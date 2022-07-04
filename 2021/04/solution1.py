@@ -30,17 +30,17 @@ def ReadFile(filePath):
     return drawingNumbers, boards
 
 
-def CheckIfThisBoardWon(board, number):
+def CheckIfThisBoardWon(board):
     for row in board:
         if all(column[1] for column in row):
-            return True, board, number
+            return True, board
 
     for cIndex in range(len(board[0])):
         column = list(map(lambda row: row[cIndex], board))
         if all(row[1] for row in column):
-            return True, board, number
+            return True, board
 
-    return False, [], -1
+    return False, []
 
 
 def MarkCellsIfSameValue(board, number):
@@ -54,9 +54,9 @@ def GetWinningBoardAndLastNumber(drawingNumbers, boards):
     for number in drawingNumbers:
         for board in boards:
             MarkCellsIfSameValue(board, number)
-            res, winningBoard, lastNumber = CheckIfThisBoardWon(board, number)
+            res, winningBoard = CheckIfThisBoardWon(board)
             if res:
-                return winningBoard, lastNumber
+                return winningBoard, number
     return [], -1
 
 
@@ -64,7 +64,7 @@ def SumAllNotMarkedValues(board):
     return sum(cell[0] for row in board for cell in row if cell[1] == False)
 
 
-drawingNumbers, boards = ReadFile("2021/04/input.txt")
+drawingNumbers, boards = ReadFile("input.txt")
 winningBoard, lastNumber = GetWinningBoardAndLastNumber(drawingNumbers, boards)
 sumNotMarkedNumbers = SumAllNotMarkedValues(winningBoard)
 print(sumNotMarkedNumbers * lastNumber)
