@@ -1,9 +1,6 @@
-const fs = require("fs");
+import { readInput, sum } from "../../utils/utils.js";
 
-const data = fs.readFileSync("input.txt", {
-  encoding: "utf8",
-  flag: "r",
-});
+const data = readInput();
 
 const gameData = data
   .trim("\r\n")
@@ -16,11 +13,11 @@ const gameResultPoints1 = {
   C: { X: 6, Y: 0, Z: 3 },
 };
 
-const sumPoints1 = gameData
-  .map(
+const sumPoints1 = sum(
+  gameData.map(
     (game) => gameResultPoints1[game[0]][game[1]] + game[1].charCodeAt(0) - 87
   )
-  .reduce((acc, val) => acc + val, 0);
+);
 
 console.log("Solution Part 1: ");
 console.log(sumPoints1);
@@ -37,12 +34,12 @@ const neededToChooseShapePoints = {
   C: { X: 2, Y: 3, Z: 1 },
 };
 
-const sumPoints2 = gameData
-  .map(
+const sumPoints2 = sum(
+  gameData.map(
     (game) =>
       gameResultPoints2[game[1]] + neededToChooseShapePoints[game[0]][game[1]]
   )
-  .reduce((acc, val) => acc + val, 0);
+);
 
 console.log("Solution Part 2: ");
 console.log(sumPoints2);

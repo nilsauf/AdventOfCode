@@ -1,26 +1,20 @@
-const fs = require("fs");
+import { readInput, sum } from "../../utils/utils.js";
 
-const data = fs.readFileSync("input.txt", {
-  encoding: "utf8",
-  flag: "r",
-});
+const data = readInput();
 
 const sums = data.split("\r\n\r\n").map((block) =>
-  block
-    .trim("\r\n")
-    .split("\r\n")
-    .map((valueString) => parseInt(valueString, 10))
-    .reduce((acc, value) => acc + value, 0)
+  sum(
+    block
+      .trim("\r\n")
+      .split("\r\n")
+      .map((valueString) => parseInt(valueString, 10))
+  )
 );
 
 console.log("Solution Part 1: ");
 console.log(Math.max(...sums));
 
-const sumOfTopThree = sums
-  .sort()
-  .reverse()
-  .slice(0, 3)
-  .reduce((acc, value) => acc + value, 0);
+const sumOfTopThree = sum(sums.sort().reverse().slice(0, 3));
 
 console.log("Solution Part 2: ");
 console.log(sumOfTopThree);
