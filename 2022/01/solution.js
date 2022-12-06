@@ -1,4 +1,4 @@
-import { readInput, sum } from "../../utils/utils.js";
+import { readInput, sum, printSolution } from "../../utils/utils.js";
 
 const data = readInput();
 
@@ -11,10 +11,8 @@ const sums = data.split("\r\n\r\n").map((block) =>
   )
 );
 
-console.log("Solution Part 1: ");
-console.log(Math.max(...sums));
+printSolution(1, Math.max(...sums));
 
 const sumOfTopThree = sum(sums.sort().reverse().slice(0, 3));
 
-console.log("Solution Part 2: ");
-console.log(sumOfTopThree);
+printSolution(2, sumOfTopThree);

@@ -1,4 +1,4 @@
-import { readInput, sum } from "../../utils/utils.js";
+import { readInput, sum, printSolution } from "../../utils/utils.js";
 
 const data = readInput();
 
@@ -19,8 +19,7 @@ const sumPoints1 = sum(
   )
 );
 
-console.log("Solution Part 1: ");
-console.log(sumPoints1);
+printSolution(1, sumPoints1);
 
 const gameResultPoints2 = {
   X: 0,
@@ -41,5 +40,4 @@ const sumPoints2 = sum(
   )
 );
 
-console.log("Solution Part 2: ");
-console.log(sumPoints2);
+printSolution(2, sumPoints2);
