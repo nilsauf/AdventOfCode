@@ -11,6 +11,14 @@ export function sum(numberArray) {
   return numberArray.reduce((acc, value) => acc + value, 0);
 }
 
+export function count(numberArray) {
+  return numberArray.reduce((acc, value) => acc + 1, 0);
+}
+
+export function parseDecToInt(stringValue){
+  return parseInt(stringValue, 10)
+}
+
 export function isLowerCase(char) {
   return char.toUpperCase() != char;
 }
